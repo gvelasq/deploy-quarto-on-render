@@ -1,10 +1,45 @@
 # deploy-quarto-on-render
 >Deploy Quarto static website on Render.com
 
-1. Install [Quarto CLI](https://quarto.org/docs/get-started/).
+## Initial setup
+1. Install [Quarto CLI](https://quarto.org/docs/get-started).
 2. Install [Quarto VS Code Extension](https://marketplace.visualstudio.com/items?itemName=quarto.quarto).
 3. Create a new repository on GitHub (e.g., `https://github.com/gvelasq/deploy-quarto-on-render`).
 4. Clone the GitHub repository: `Git: Clone > https://github.com/gvelasq/deploy-quarto-on-render`.
 5. Create a Quarto project: `Quarto: Create Project > Website Project`.
 6. In the Finder popup window, choose the project root folder `deploy-quarto-on-render` then click `Choose Project Directory`.
 7. In the Command Palette popup window, for `Project Directory Name` type `.` to add the project files to the project root folder. This will add `_quarto.yml`, `.gitignore`, `about.qmd`, `index.qmd`, and `styles.css` to the project root folder.
+8. Add [site navigation](https://quarto.org/docs/websites/website-navigation.html#side-navigation) with [auto generation](https://quarto.org/docs/websites/website-navigation.html#auto-generation) of sidebar contents. In `_quarto.yml`, add the following  under `website:` with two-space indentation:
+```yaml
+website:
+  sidebar:
+    contents: auto
+  # rest of _quarto.yml contents below
+```
+9. Render the Quarto project: `Quarto: Render Project`.
+10. Commit and push the `./_site` folder.
+11. Sign into [Render](https://dashboard.render.com) with your GitHub account.
+12. Select `New Static Site > Credentials > Configure in GitHub`.
+13. In the browser popup window, select your GitHub username.
+14. Select `Only selected repositories > gvelasq/deploy-quarto-on-render > Install`.
+15. Back in [Render](https://dashboard.render.com)'s dialog for `New Static Site`, select `Git Provider > gvelasq/deploy-quarto-on-render`.
+16. Change `Name` if desired. Set `Publish Directory` to `_site`.
+17. Select `Deploy Static Site`.
+18. In the Render dashboard, a console will exit with `==> Your site is live 🎉` and the new static site will be available at the corresponding URL (e.g., https://deploy-quarto-on-render.onrender.com).
+
+## Add a linked page
+1. In the project root folder, duplicate `about.qmd` and rename it `chapter01.qmd`. Replace its contents with:
+```markdown
+---
+title: "Chapter 1"
+---
+
+This chapter links to the [about](about.qmd) page.
+```
+2. Render the Quarto project: `Quarto: Render Project`.
+3. Commit and push the new page.
+4. The [Chapter 1](https://deploy-quarto-on-render.onrender.com/chapter01.html) page links back to the [About](https://deploy-quarto-on-render.onrender.com/about.html) page.
+
+## Resources
+* Quarto website documentation: https://quarto.org/docs/websites
+* Quarto linking documentation: https://quarto.org/docs/websites/#linking
