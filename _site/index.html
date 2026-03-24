@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -140,8 +175,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#initial-setup" id="toc-initial-setup" class="nav-link active" data-scroll-target="#initial-setup">Initial setup</a></li>
+  <li><a href="#add-a-linked-page" id="toc-add-a-linked-page" class="nav-link" data-scroll-target="#add-a-linked-page">Add a linked page</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -165,10 +208,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<blockquote class="blockquote">
+<p>Deploy Quarto static website on Render.com</p>
+</blockquote>
+<section id="initial-setup" class="level2">
+<h2 class="anchored" data-anchor-id="initial-setup">Initial setup</h2>
+<ol type="1">
+<li>Install <a href="https://quarto.org/docs/get-started">Quarto CLI</a>.</li>
+<li>Install <a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">Quarto VS Code Extension</a>.</li>
+<li>Create a new repository on GitHub (e.g., <code>https://github.com/gvelasq/deploy-quarto-on-render</code>).</li>
+<li>Clone the GitHub repository: <code>Git: Clone &gt; https://github.com/gvelasq/deploy-quarto-on-render</code>.</li>
+<li>Create a Quarto project: <code>Quarto: Create Project &gt; Website Project</code>.</li>
+<li>In the Finder popup window, choose the project root folder <code>deploy-quarto-on-render</code> then click <code>Choose Project Directory</code>.</li>
+<li>In the Command Palette popup window, for <code>Project Directory Name</code> type <code>.</code> to add the project files to the project root folder. This will add <code>_quarto.yml</code>, <code>.gitignore</code>, <code>about.qmd</code>, <code>index.qmd</code>, and <code>styles.css</code> to the project root folder.</li>
+<li>Add <a href="https://quarto.org/docs/websites/website-navigation.html#side-navigation">site navigation</a> with <a href="https://quarto.org/docs/websites/website-navigation.html#auto-generation">auto generation</a> of sidebar contents. In <code>_quarto.yml</code>, add the following under <code>website:</code> with two-space indentation:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span><span class="at"> auto</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">  # rest of _quarto.yml contents below</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="9" type="1">
+<li>Render the Quarto project: <code>Quarto: Render Project</code>.</li>
+<li>Commit and push the <code>./_site</code> folder.</li>
+<li>Sign into <a href="https://dashboard.render.com">Render</a> with your GitHub account.</li>
+<li>Select <code>New Static Site &gt; Credentials &gt; Configure in GitHub</code>.</li>
+<li>In the browser popup window, select your GitHub username.</li>
+<li>Select <code>Only selected repositories &gt; gvelasq/deploy-quarto-on-render &gt; Install</code>.</li>
+<li>Back in <a href="https://dashboard.render.com">Render</a>’s dialog for <code>New Static Site</code>, select <code>Git Provider &gt; gvelasq/deploy-quarto-on-render</code>.</li>
+<li>Change <code>Name</code> if desired. Set <code>Publish Directory</code> to <code>_site</code>.</li>
+<li>Select <code>Deploy Static Site</code>.</li>
+<li>In the Render dashboard, the virtual console will exit with <code>==&gt; Your site is live 🎉</code> and the new static site will be available at the corresponding URL (e.g., https://deploy-quarto-on-render.onrender.com).</li>
+</ol>
+</section>
+<section id="add-a-linked-page" class="level2">
+<h2 class="anchored" data-anchor-id="add-a-linked-page">Add a linked page</h2>
+<ol type="1">
+<li>In the project root folder, duplicate <code>about.qmd</code> and rename it <code>chapter01.qmd</code>. Replace its contents with:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Chapter 1"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>This chapter links to the <span class="co">[</span><span class="ot">about</span><span class="co">](about.qmd)</span> page.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol start="2" type="1">
+<li>Render the Quarto project: <code>Quarto: Render Project</code>.</li>
+<li>Commit and push the new page.</li>
+<li>The <a href="https://deploy-quarto-on-render.onrender.com/chapter01.html">Chapter 1</a> page links back to the <a href="https://deploy-quarto-on-render.onrender.com/about.html">About</a> page.</li>
+</ol>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<ul>
+<li>Quarto website documentation: https://quarto.org/docs/websites</li>
+<li>Quarto linking documentation: https://quarto.org/docs/websites/#linking</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

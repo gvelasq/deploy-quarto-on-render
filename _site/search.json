@@ -15,7 +15,28 @@
     "href": "index.html",
     "title": "deploy-quarto-on-render",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Deploy Quarto static website on Render.com"
+  },
+  {
+    "objectID": "index.html#initial-setup",
+    "href": "index.html#initial-setup",
+    "title": "deploy-quarto-on-render",
+    "section": "Initial setup",
+    "text": "Initial setup\n\nInstall Quarto CLI.\nInstall Quarto VS Code Extension.\nCreate a new repository on GitHub (e.g., https://github.com/gvelasq/deploy-quarto-on-render).\nClone the GitHub repository: Git: Clone &gt; https://github.com/gvelasq/deploy-quarto-on-render.\nCreate a Quarto project: Quarto: Create Project &gt; Website Project.\nIn the Finder popup window, choose the project root folder deploy-quarto-on-render then click Choose Project Directory.\nIn the Command Palette popup window, for Project Directory Name type . to add the project files to the project root folder. This will add _quarto.yml, .gitignore, about.qmd, index.qmd, and styles.css to the project root folder.\nAdd site navigation with auto generation of sidebar contents. In _quarto.yml, add the following under website: with two-space indentation:\n\nwebsite:\n  sidebar:\n    contents: auto\n  # rest of _quarto.yml contents below\n\nRender the Quarto project: Quarto: Render Project.\nCommit and push the ./_site folder.\nSign into Render with your GitHub account.\nSelect New Static Site &gt; Credentials &gt; Configure in GitHub.\nIn the browser popup window, select your GitHub username.\nSelect Only selected repositories &gt; gvelasq/deploy-quarto-on-render &gt; Install.\nBack in Render’s dialog for New Static Site, select Git Provider &gt; gvelasq/deploy-quarto-on-render.\nChange Name if desired. Set Publish Directory to _site.\nSelect Deploy Static Site.\nIn the Render dashboard, the virtual console will exit with ==&gt; Your site is live 🎉 and the new static site will be available at the corresponding URL (e.g., https://deploy-quarto-on-render.onrender.com)."
+  },
+  {
+    "objectID": "index.html#add-a-linked-page",
+    "href": "index.html#add-a-linked-page",
+    "title": "deploy-quarto-on-render",
+    "section": "Add a linked page",
+    "text": "Add a linked page\n\nIn the project root folder, duplicate about.qmd and rename it chapter01.qmd. Replace its contents with:\n\n---\ntitle: \"Chapter 1\"\n---\n\nThis chapter links to the [about](about.qmd) page.\n\nRender the Quarto project: Quarto: Render Project.\nCommit and push the new page.\nThe Chapter 1 page links back to the About page."
+  },
+  {
+    "objectID": "index.html#resources",
+    "href": "index.html#resources",
+    "title": "deploy-quarto-on-render",
+    "section": "Resources",
+    "text": "Resources\n\nQuarto website documentation: https://quarto.org/docs/websites\nQuarto linking documentation: https://quarto.org/docs/websites/#linking"
   },
   {
     "objectID": "about.html",

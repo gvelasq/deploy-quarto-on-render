@@ -25,7 +25,7 @@ website:
 15. Back in [Render](https://dashboard.render.com)'s dialog for `New Static Site`, select `Git Provider > gvelasq/deploy-quarto-on-render`.
 16. Change `Name` if desired. Set `Publish Directory` to `_site`.
 17. Select `Deploy Static Site`.
-18. In the Render dashboard, a console will exit with `==> Your site is live 🎉` and the new static site will be available at the corresponding URL (e.g., https://deploy-quarto-on-render.onrender.com).
+18. In the Render dashboard, the virtual console will exit with `==> Your site is live 🎉` and the new static site will be available at the corresponding URL (e.g., https://deploy-quarto-on-render.onrender.com).
 
 ## Add a linked page
 1. In the project root folder, duplicate `about.qmd` and rename it `chapter01.qmd`. Replace its contents with:
