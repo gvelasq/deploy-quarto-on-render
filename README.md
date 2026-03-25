@@ -14,7 +14,7 @@
 website:
   sidebar:
     contents: auto
-  # rest of _quarto.yml contents below
+  # rest of _quarto.yml contents
 ```
 9. Render the Quarto project: `Quarto: Render Project`.
 10. Commit and push the `./_site` folder.
